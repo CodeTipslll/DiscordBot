@@ -29,7 +29,7 @@ namespace TutorialBot
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
 
-            string token = "Your token";
+            string token = "Your Discord Token";
 
             _client.Log += _client_Log;
 
@@ -69,5 +69,18 @@ namespace TutorialBot
                 if (result.Error.Equals(CommandError.UnmetPrecondition)) await message.Channel.SendMessageAsync(result.ErrorReason);
             }
         }
+    }
+    public class Commands : ModuleBase<SocketCommandContext>
+    {
+
+        [Command("Hi")]
+        public async Task Hi()
+        {
+            var emoji = new Emoji("\uE407");
+            var emoji1 = new Emoji("\uE34A");
+            var emoji2 = new Emoji("\uE331");
+            await ReplyAsync("Hi" + emoji + emoji1 + emoji2);
+        }
+       
     }
 }
